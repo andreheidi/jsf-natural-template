@@ -9,11 +9,7 @@ import javax.enterprise.inject.spi.InjectionPoint;
 /**
  * Created by andre on 5/6/16.
  */
-public class LoggerProducer {
-
-    private LoggerProducer() {
-
-    }
+public final class LoggerProducer {
 
     @Produces
     public Logger createLogger(InjectionPoint injectionPoint) {

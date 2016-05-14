@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
-    <a href="personList.xhtml">BACK</a>
+    <a href="../index.xhtml">BACK</a>
     <form jsf:id="formPerson">
         <p>
             <label>Nome: </label>
@@ -28,6 +30,28 @@
             <button jsf:action="#{personController.save}" >Save</button>
         </p>
 
+    </form>
+    <form jsf:id="formTable">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Birth</th>
+            </tr>
+            <ui:repeat value="#{personController.personList}" var="person">
+                <tr>
+                    <td>#{person.id}</td>
+                    <td>#{person.name}</td>
+                    <td>#{person.cpf}</td>
+                    <td>#{person.email}</td>
+                    <td>#{person.birth}</td>
+                    <td><a href="person.xhtml" jsf:action="#{personController.edit(person)}">Edit</a></td>
+                    <td><a href="#" jsf:action="#{personController.remove(person)}">Delete</a></td>
+                </tr>
+            </ui:repeat>
+        </table>
     </form>
 </h:body>
 </html>

@@ -1,5 +1,7 @@
 package br.com.moriya.model.repository;
 
+import br.com.moriya.model.Person;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +10,11 @@ import java.util.List;
  */
 public interface Repository<T, ID extends Serializable> {
 
-    public void save(T entity);
+    void save(T entity);
 
-    public List<T> list();
+    void delete(T entity);
+
+    T findById(Long id);
+
+    List<T> list();
 }

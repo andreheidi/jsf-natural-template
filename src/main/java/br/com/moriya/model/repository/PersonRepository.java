@@ -24,15 +24,32 @@ public class PersonRepository implements Repository<Person, Long> {
     @Override
     @Transactional
     public void save(Person entity) {
-        this.entityManager.persist(entity);
-
+        this.entityManager.merge(entity);
         this.entityManager.flush();
+        this.entityManager.clear();
+    }
 
+    @Override
+    @Transactional
+    public void delete(Person entity) {
+        this.entityManager.remove(entity);
+        this.entityManager.flush();
+        this.entityManager.clear();
+    }
+
+    public Person findByReference(Long id) {
+        Person person = this.entityManager.getReference(Person.class, id);
+        return person;
+    }
+
+    public Person findById(Long id) {
+        Person person = this.entityManager.find(Person.class, id);
+        return person;
     }
 
     @Override
     public List<Person> list() {
-        List<Person> list = new ArrayList<>();
+        List<Person> list = null;
         TypedQuery<Person> query = this.entityManager.createQuery("select p from Person p", Person.class);
         list = query.getResultList();
         return list;

@@ -12,7 +12,13 @@ import java.util.List;
  */
 public interface PersonService {
 
-    public void save(Person person);
+    void save(Person person);
 
-    public List<Person> list();
+    void delete(Person person);
+
+    Person findByReference(Long id);
+
+    Person findById(Long id);
+
+    List<Person> list();
 }
